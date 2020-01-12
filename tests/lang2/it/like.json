@@ -1,0 +1,10 @@
+{
+    "received": "hai ricevuto",
+    "numerical": {
+        "_": "mi piace",
+        "n1": "un mi piace",
+        "n2": "alcuni mi piace",
+        "n10": "diversi mi piace",
+        "n50": "moltissimi mi piace"
+    }
+}

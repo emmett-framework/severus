@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "Severus"
+version = "1.0.0b1.dev0"
+description = "An internationalization engine designed with simplicity in mind"
+authors = ["Giovanni Barillari <gi0baro@d4net.org>"]
+license = "BSD-3-Clause"
+
+readme = "README.md"
+# homepage = "https://github.com/emmett-framework/severus"
+repository = "https://github.com/emmett-framework/severus"
+# documentation = "https://github.com/emmett-framework/severus"
+
+keywords = ["internationalization"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Software Development :: Internationalization",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+packages = [
+    {include = "severus"},
+    {include = "tests", format = "sdist"}
+]
+include = [
+    "CHANGES.md",
+    "LICENSE",
+    "docs/**/*"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pyyaml = "~5.3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

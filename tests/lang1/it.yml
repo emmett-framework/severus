@@ -1,0 +1,10 @@
+"partly cloudy": nuvolosità variabile
+"you received": hai ricevuto
+"type {n} characters": "digita {n} caratteri"
+"type {} characters": "digita {} caratteri"
+like:
+  _: mi piace
+  n1: un mi piace
+  n2: alcuni mi piace
+  n10: diversi mi piace
+  n50: tantissimi mi piace

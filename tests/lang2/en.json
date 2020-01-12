@@ -1,0 +1,17 @@
+{
+    "like": {
+        "received": "you received",
+        "numerical": {
+            "_": "like",
+            "n1": "a like",
+            "n2": "some likes",
+            "n10": "several likes",
+            "n50": "a lot of likes"
+        }
+    },
+    "weather": {
+        "cloudy": {
+            "partly": "partly cloudy"
+        }
+    }
+}
