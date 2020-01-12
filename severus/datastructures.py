@@ -71,7 +71,7 @@ class Tstr:
         )
 
     def __repr__(self):
-        return str(self)
+        return repr(str(self))
 
     def encode(self, *args, **kwargs) -> bytes:
         return str(self).encode(*args, **kwargs)
