@@ -80,7 +80,7 @@ class Language:
                 data = ymlload(f.read(), Loader=ymlLoader)
         else:
             raise RuntimeError(f'Invalid source format: {path}')
-        prefix = filename_prefix and file_name.rsplit('/', 1)[-1] or None
+        prefix = filename_prefix and os.path.split(file_name)[-1] or None
         self._load_data(data, prefix)
 
     def _load_data(
