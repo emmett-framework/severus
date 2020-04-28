@@ -14,7 +14,7 @@ from severus import Severus
 T = Severus()
 ```
 
-As per default configuration, Severus will use english as its default language and the current working directory to look for translation files. Of course you can customize its configuration, here is the complete list of accepted parameters:
+As per default configuration, Severus will use English as its default language and the current working directory to look for translation files. Of course you can customize its configuration upon your needs. Here is the complete list of accepted parameters:
 
 | parameter | type | default |
 | --- | --- | --- |
@@ -26,15 +26,15 @@ As per default configuration, Severus will use english as its default language a
 Translations
 ------------
 
-Severus gives you two different ways of handling your translations: using strings directly or mapping keys to identify which string you want to translate. While the first option gives you a quick way to start translating your words, the second one is appropriate when the complexity and the amount of the translation increases in your daily usage.
+Severus gives you two different ways of handling your translations: using strings directly or mapping keys to identify which string you want to translate. While the first option gives you a quick way to start translating your texts, the second one is convenient when the complexity and the amount of translations rises in your daily usage.
 
 Let's see the two approaches separately.
 
 ### Using strings directly
 
-The quickiest way to use Severus is to start writing your translations using strings directly. This allows you to just write the translation files for the languages you want to translate, and the convenient pattern is to use JSON files. 
+The quickiest way to use Severus is to start writing your translations using strings directly. This allows you to just write translation files for the languages you want to translate, and the convenient pattern for such purpose is to use JSON files. 
 
-Let's say we want to translate some strings from English, our default language, to Italian. Then we can write down an *it.json* file in our translations directory with this contents:
+Let's say we want to translate some strings from English, our default language, to Italian. Then we can write down an *it.json* file in our translations directory with these contents:
 
 ```json
 {
@@ -59,12 +59,12 @@ which will produce *Ciao Bob*.
 The `language` context manager is a nice way of handling your translations, but you can also explicitely set a language when calling your Severus instance, like:
 
 ```python
-T("Hello {user_name}", lang="it")
+T("Hello world!", lang="it")
 ```
 
 ### Mapping your translations
 
-Whenever you want or need a more structured way of handling your translations, you can map such strings using keys. Severus gives you the choice to use JSON or YAML files, depending on which suits you better, but in this case you also have to write the mapping for the strings in your default language. Let's rewrite the upper example with keys, starting with an *en.json* file:
+Whenever you want or need a more structured ground for handling your translations, you can map such strings using keys. Severus gives you the choice to use JSON or YAML files, depending on which option suits you better, but in this case you also have to write the mapping for the strings in your default language. Let's rewrite the upper example with keys, starting with an *en.json* file:
 
 ```json
 {
@@ -75,12 +75,12 @@ Whenever you want or need a more structured way of handling your translations, y
 }
 ```
 
-and the relevant translation file *it.yaml*:
+and the relevant Italian translation file *it.yaml*:
 
 ```yaml
 greetings:
-  world: Hello World!
-  user: "Hello {user_name}"
+  world: Ciao mondo!
+  user: "Ciao {user_name}"
 ```
 
 Severus will produce keys joining the different part of your translation tree using dots, so in order to translate the strings in this case we will write:
@@ -90,7 +90,7 @@ with language("it"):
     print(T("greetings.user").format(user_name="Bob"))
 ```
 
-which gives us *Ciao Bob* as in the prior example.
+which gives us *Ciao Bob* as per the prior example.
 
 #### Using multiple translation files
 
@@ -102,19 +102,19 @@ Severus also supports separating your translations into multiple files for the s
 and a *greetings.yaml* file like this:
 
 ```yaml
-world: Hello World!
-user: "Hello {user_name}"
+world: Ciao mondo!
+user: "Ciao {user_name}"
 time:
-  morning: "Good morning"
-  night: "Good night"
+  morning: Buon giorno
+  night: Buona notte
 ```
 
-The translation of `greetings.user` will be the same, and as you can see, you can have any number of nested keys for your translations, as it will be for `greetings.time.morning`.
+The translation of `greetings.user` will be the same, and, as you can see, any number of nested keys is supported for your translations, as it will be for `greetings.time.morning`.
 
 Pluralization
 -------------
 
-Severus also support pluralization over your translation strings. This means that when text marked for translation depends on a numeric variable, it might be translated differently based on the numeric value of such variable. As an example, in English we my want to render:
+Severus also supports pluralization over your translation strings. This means that when text marked for translation depends on a numeric variable, it might be translated differently based on the numeric value of such variable. As an example, in English we my want to render:
 
     n item(s)
 
@@ -126,7 +126,7 @@ while if n is greater than 1, for example 5, we have:
 
     5 items
 
-In order to achieve this result with Severus, we need to add the relevant forms into our translation file, and we can even support even more cases:
+In order to achieve this result with Severus, we need to add the relevant forms into our translation file using special keys, and we can support even more cases:
 
 ```yaml
 cart:
@@ -138,7 +138,7 @@ cart:
     n2: "{n} items"
 ```
 
-and we can translate our strings properly:
+So we can translate our strings properly:
 
 ```python
 with language("en"):
@@ -151,13 +151,13 @@ with language("en"):
     )
 ```
 
-This will print:
+The upper code will print:
 
     Your cart contains no items (with n=0)
     Your cart contains an item (with n=1)
     Your cart contains 2 items (with n=2)
 
-Mind that we also added a `_` key to our translations, that will handle cases where no numerical parameter was given, so in case we just call:
+Mind that we also added a `_` key to our translations. This special key will handle cases where no numerical parameter is given, so in cases where we just call:
 
 ```python
 T("cart.item")
