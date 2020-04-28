@@ -1,9 +1,9 @@
 Severus changelog
 =================
 
-Next
-----
+Version 1.0
+-----------
 
-(Release date to be defined)
+Released on April 28th 2020
 
-First public preview release
+First public release
