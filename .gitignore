@@ -3,7 +3,9 @@ __pycache__
 
 *.sublime-*
 .venv
+.vscode
 
 build/*
 dist/*
 Severus.egg-info/*
+poetry.lock

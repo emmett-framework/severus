@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Severus"
-version = "1.0.0"
+version = "1.0.1"
 description = "An internationalization engine designed with simplicity in mind"
 authors = ["Giovanni Barillari <gi0baro@d4net.org>"]
 license = "BSD-3-Clause"
@@ -11,7 +11,7 @@ repository = "https://github.com/emmett-framework/severus"
 
 keywords = ["internationalization"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
