@@ -71,11 +71,11 @@ def test_plurals(T):
 
         assert (
             T('you received') + ' ' + T('like').format(n=5) ==
-            'you received some likes')
+            'you received 5 likes')
         assert (
             T('you received', lang='it') + ' ' +
             T('like', lang='it').format(n=5) ==
-            'hai ricevuto alcuni mi piace')
+            'hai ricevuto 5 mi piace')
 
         assert (
             T('you received') + ' ' + T('like').format(n=10) ==

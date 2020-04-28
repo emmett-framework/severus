@@ -18,10 +18,10 @@ def test_load(T, Tpre):
     }
     assert not T._languages['ru']._groups
     assert set(T._languages['en']._groups['like'].keys()) == {
-        1, 2, 10, 50
+        1, 2, 5, 10, 50
     }
     assert set(T._languages['it']._groups['like'].keys()) == {
-        '_', 1, 2, 10, 50
+        '_', 1, 2, 5, 10, 50
     }
 
     assert set(Tpre._languages['en']._strings.keys()) == {
@@ -43,10 +43,10 @@ def test_load(T, Tpre):
     assert set(
         Tpre._languages['en']._groups['like.numerical'].keys()
     ) == {
-        '_', 1, 2, 10, 50
+        '_', 1, 2, 5, 10, 50
     }
     assert set(
         Tpre._languages['it']._groups['like.numerical'].keys()
     ) == {
-        '_', 1, 2, 10, 50
+        '_', 1, 2, 5, 10, 50
     }
