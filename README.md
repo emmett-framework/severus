@@ -28,7 +28,7 @@ with language("it"):
 
 ## Documentation
 
-*The documentation will be soon available under the docs folder.*
+The documentation is available under the [docs folder](https://github.com/emmett-framework/severus/tree/master/docs).
 
 ## License
 
