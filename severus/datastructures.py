@@ -5,7 +5,7 @@
 
     Provides datastructures for translator.
 
-    :copyright: 2020 Giovanni Barillari
+    :copyright: 2021 Giovanni Barillari
     :license: BSD-3-Clause
 """
 
