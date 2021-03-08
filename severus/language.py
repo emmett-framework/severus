@@ -55,7 +55,7 @@ class Language:
                     '.json', '.yml', '.yaml'
                 ]:
                     sources.append(file_path)
-        elif path.is_file:
+        elif path.is_file():
             sources.append(path)
         for source in sources:
             self._sources.append({
