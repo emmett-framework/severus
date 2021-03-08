@@ -5,7 +5,7 @@
 
     Provides language data wrapper.
 
-    :copyright: 2021 Giovanni Barillari
+    :copyright: 2020 Giovanni Barillari
     :license: BSD-3-Clause
 """
 
