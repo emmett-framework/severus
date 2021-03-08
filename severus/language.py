@@ -11,11 +11,10 @@
 
 from __future__ import annotations
 
-import io
 import json
-import os
 import re
 
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 from yaml import SafeLoader as ymlLoader, load as ymlload
 
@@ -28,7 +27,7 @@ class Language:
 
     def __init__(
         self,
-        data_path: str,
+        data_path: Path,
         encoding: str = 'utf8',
         filename_prefix: bool = True,
         watch_changes: bool = False
@@ -45,42 +44,42 @@ class Language:
 
     def _load_sources(
         self,
-        path: str,
+        path: Path,
         filename_prefix: bool = True
     ):
         sources, filename_prefix_applicable = [], False
-        if os.path.isdir(path):
+        if path.is_dir():
             filename_prefix_applicable = filename_prefix
-            for file_name in os.listdir(path):
-                if os.path.splitext(file_name)[1] in [
+            for file_path in path.iterdir():
+                if file_path.suffix in [
                     '.json', '.yml', '.yaml'
                 ]:
-                    sources.append(os.path.join(path, file_name))
-        elif os.path.isfile(path):
+                    sources.append(file_path)
+        elif path.is_file:
             sources.append(path)
         for source in sources:
             self._sources.append({
                 'path': source,
-                'mtime': os.stat(source).st_mtime,
+                'mtime': source.stat().st_mtime,
                 'prefix': filename_prefix_applicable
             })
             self._load_source(source, filename_prefix_applicable)
 
     def _load_source(
         self,
-        path: str,
+        path: Path,
         filename_prefix: bool = False
     ):
-        file_name, ext = os.path.splitext(path)
+        ext = path.suffix
         if ext == '.json':
-            with io.open(path, 'rt', encoding=self._encoding) as f:
+            with path.open("rt", encoding=self._encoding) as f:
                 data = json.loads(f.read())
         elif ext in ['.yml', '.yaml']:
-            with io.open(path, 'rt', encoding=self._encoding) as f:
+            with path.open("rt", encoding=self._encoding) as f:
                 data = ymlload(f.read(), Loader=ymlLoader)
         else:
             raise RuntimeError(f'Invalid source format: {path}')
-        prefix = filename_prefix and os.path.split(file_name)[-1] or None
+        prefix = filename_prefix and path.stem or None
         self._load_data(data, prefix)
 
     def _load_data(
@@ -100,7 +99,7 @@ class Language:
 
     def _ensure_updated_sources(self):
         for source in self._sources:
-            mtime = os.stat(source['path']).st_mtime
+            mtime = source['path'].stat().st_mtime
             if mtime != source['mtime']:
                 source['mtime'] = mtime
                 self._load_data(source['path'], source['prefix'])

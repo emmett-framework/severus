@@ -11,9 +11,9 @@
 
 from __future__ import annotations
 
-import os
 import re
 
+from pathlib import Path
 from typing import Dict, Optional
 
 from .ctx import get_language
@@ -42,7 +42,7 @@ class Translator:
     ):
         self._langmap: Dict[str, str] = {}
         self._languages: Dict[str, Language] = {}
-        self._path: str = path
+        self._path: Path = Path(path).resolve()
         self._encoding: str = encoding
         self._default_language: str = default_language
         self._filename_prefix: bool = use_filename_as_prefix
@@ -55,25 +55,27 @@ class Translator:
         self._build_languages()
 
     def _build_languages(self):
-        for path in os.listdir(self._path):
-            lang_match = self._re_langpath.match(path)
-            if not lang_match:
-                continue
-            lang_key = path[:2] + (lang_match.groups()[0] or '')
-            self._langmap[lang_key] = lang_key
-            self._languages[lang_key] = Language(
-                os.path.join(self._path, path),
-                self._encoding,
-                self._filename_prefix,
-                self._changes_track
-            )
+        if self._path.is_dir():
+            for path in self._path.iterdir():
+                rel_path = str(path.relative_to(self._path))
+                lang_match = self._re_langpath.match(rel_path)
+                if not lang_match:
+                    continue
+                lang_key = rel_path[:2] + (lang_match.groups()[0] or '')
+                self._langmap[lang_key] = lang_key
+                self._languages[lang_key] = Language(
+                    path,
+                    self._encoding,
+                    self._filename_prefix,
+                    self._changes_track
+                )
         self._langmap[self._default_language] = self._langmap.get(
             self._default_language
         ) or self._default_language
         self._languages[self._default_language] = self._languages.get(
             self._default_language
         ) or Language(
-            os.path.join(self._path, self._default_language),
+            self._path / self._default_language,
             self._encoding,
             self._filename_prefix,
             self._changes_track
