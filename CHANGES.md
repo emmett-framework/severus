@@ -1,6 +1,15 @@
 Severus changelog
 =================
 
+Version 1.1
+-----------
+
+Released on March 8th 2021
+
+- Updated build system to `poetry-core`
+- Refactored internals to use `pathlib`
+
+
 Version 1.0
 -----------
 
