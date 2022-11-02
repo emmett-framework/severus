@@ -1,6 +1,13 @@
 Severus changelog
 =================
 
+Version 1.2
+-----------
+
+Released on November 2nd 2022
+
+- Added Python 3.11 support
+
 Version 1.1
 -----------
 
