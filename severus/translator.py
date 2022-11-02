@@ -14,7 +14,7 @@ from __future__ import annotations
 import re
 
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Optional, Type
 
 from .ctx import get_language
 from .datastructures import Tstr
@@ -38,7 +38,7 @@ class Translator:
         encoding: str = 'utf8',
         use_filename_as_prefix: bool = True,
         watch_changes: bool = False,
-        str_class: Optional[Tstr] = Tstr
+        str_class: Optional[Type[Tstr]] = Tstr
     ):
         self._langmap: Dict[str, str] = {}
         self._languages: Dict[str, Language] = {}
@@ -51,7 +51,7 @@ class Translator:
             raise RuntimeError(
                 f'{str_class.__name__} should be a subclass of Tstr'
             )
-        self._str_class: Tstr = str_class
+        self._str_class: Type[Tstr] = str_class
         self._build_languages()
 
     def _build_languages(self):
