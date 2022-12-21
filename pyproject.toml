@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "Severus"
+name = "severus"
 version = "1.2.0"
 description = "An internationalization engine designed with simplicity in mind"
 authors = ["Giovanni Barillari <gi0baro@d4net.org>"]
