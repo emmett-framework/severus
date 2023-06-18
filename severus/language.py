@@ -102,7 +102,7 @@ class Language:
             mtime = source['path'].stat().st_mtime
             if mtime != source['mtime']:
                 source['mtime'] = mtime
-                self._load_data(source['path'], source['prefix'])
+                self._load_source(source['path'], source['prefix'])
 
     def _get_reload(self, text: str) -> Tuple[str, Dict[int, str]]:
         self._ensure_updated_sources()
