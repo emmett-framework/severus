@@ -1,3 +1,6 @@
+[project]
+name = "severus"
+
 [tool.poetry]
 name = "severus"
 version = "1.2.2"
