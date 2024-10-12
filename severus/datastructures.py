@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    severus.datastructures
-    ----------------------
+severus.datastructures
+----------------------
 
-    Provides datastructures for translator.
+Provides datastructures for translator.
 
-    :copyright: 2020 Giovanni Barillari
-    :license: BSD-3-Clause
+:copyright: 2020 Giovanni Barillari
+:license: BSD-3-Clause
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ from .ctx import get_context
 
 
 class Tstr:
-    __slots__ = ['text', 'lang', 'args', 'kwargs']
+    __slots__ = ["text", "lang", "args", "kwargs"]
 
     def __init__(self, text: str, lang: Optional[str] = None, *args, **kwargs):
         self.text = text
@@ -66,9 +66,7 @@ class Tstr:
         return str(self) * val
 
     def __str__(self) -> str:
-        return get_context().translate(
-            self.text, self.lang, *self.args, **self.kwargs
-        )
+        return get_context().translate(self.text, self.lang, *self.args, **self.kwargs)
 
     def __repr__(self):
         return repr(str(self))
@@ -78,12 +76,12 @@ class Tstr:
 
 
 class GroupData(dict):
-    __slots__ = ['nkeys']
+    __slots__ = ["nkeys"]
 
     def __init__(self, data: Dict[str, str]):
-        kset = set(data.keys()) - {'_'}
+        kset = set(data.keys()) - {"_"}
         inner = {int(key[1:]): data[key] for key in kset}
-        if '_' in data:
-            inner['_'] = data['_']
+        if "_" in data:
+            inner["_"] = data["_"]
         super().__init__(inner)
         self.nkeys = sorted([int(key[1:]) for key in kset])

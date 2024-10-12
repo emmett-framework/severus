@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    severus.ctx
-    -----------
+severus.ctx
+-----------
 
-    Provides context facilities.
+Provides context facilities.
 
-    :copyright: 2020 Giovanni Barillari
-    :license: BSD-3-Clause
+:copyright: 2020 Giovanni Barillari
+:license: BSD-3-Clause
 """
 
 from __future__ import annotations
@@ -15,8 +15,9 @@ from contextlib import contextmanager
 from contextvars import ContextVar, Token
 from typing import Generic, Union
 
-_ctx = ContextVar('ctx', default=None)
-_lang = ContextVar('lang', default=None)
+
+_ctx = ContextVar("ctx", default=None)
+_lang = ContextVar("lang", default=None)
 
 
 def set_context(translator: Generic) -> Token:
