@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "severus"
-version = "1.4.0"
+version = "1.4.1"
 description = "An internationalization engine designed with simplicity in mind"
 readme = "README.md"
 license = "BSD-3-Clause"
