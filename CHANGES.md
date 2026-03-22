@@ -1,6 +1,22 @@
 Severus changelog
 =================
 
+Version 1.5
+-----------
+
+Released on March 22nd 2026
+
+- Removed Python 3.8 support
+- Removed Python 3.9 support
+- Added Python 3.14 support
+
+Version 1.4
+-----------
+
+Released on October 12th 2024
+
+- Added Python 3.13 support
+
 Version 1.3
 -----------
 
